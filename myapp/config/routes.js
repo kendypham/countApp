@@ -25,13 +25,15 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {view: 'pages/homepage'},
-  // '/':  {view : 'countview/count1'},
-  // 'get /count' : {view : 'countview/count'},
   'get /count' :'CountViewController.render',
   'get /countview/new' : {view : 'countview/new'},
+  'post /reset' :'CountViewController.reset',
+  'get /load' :  'CountViewController.load',
   
   'post /count': 'CountViewController.count',
+  'post /count/view': 'CountViewController.count',
   '/welcome': { view: 'countview/welcome' },
+  
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

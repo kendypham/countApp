@@ -1,14 +1,35 @@
-<h1>Counting</h1>
+<div >
+    <h1>Counting Number Click</h1>
 
 
 
-<div>
-<div><%= data %></div>    
+    <div>
+        <div id="demo"><%= data %></div>
 
-</div>
-<form action="/count" method="post">
+    </div>
+    <!-- <form action="/count" method="post">
     <input type="submit">
-</form>
+</form> -->
+
+    <button type="button" onclick="loadDoc('count')">Count</button>
+    <button type="button" onclick="loadDoc('reset')">Reset</button>
+</div>
 <script>
+    
+
+    function loadDoc(url) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {                          
+                console.log(JSON.parse(this.responseText));
+                document.getElementById("demo").innerHTML =JSON.parse(this.responseText).data;
+                
+            }
+        };
+       
+        xhttp.open("POST", url, true);
+        xhttp.send();
+    }
+
     
 </script>

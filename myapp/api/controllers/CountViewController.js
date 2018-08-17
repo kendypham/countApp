@@ -11,6 +11,7 @@ module.exports = {
     },
     
     render : async function(req, res, next) {
+       
         let data = await sails.helpers.sum();
         console.log(data);
         try{
@@ -31,14 +32,39 @@ module.exports = {
         }
     },
 
-    count : async function(req, res, next) {
-        const data = await CountView.create().fetch();
+    load : async function(req, res, next) {
+       
+        let data = await sails.helpers.sum();
+        console.log(data);
+        try{
+            if(data == 0){
+                return res.ok({
+                    data : 0
+                 });
+            }
+            if(!data){
+                throw new Error('Could not sum object');
+            }
+            return res.ok({
+                data
+             });
+        } catch(err){
+            console.error(err)
+            return res.status(500) 
+        }
+    },
+    
+    count : async function(req, res) {
+        await CountView.create().fetch();
+       
+
+        let data = await sails.helpers.sum();
         try{
             if(!data){
                 throw new Error('Could not create count view object');
             }
-            return res.view('count',{
-                data: data.id
+            return res.ok({
+                data
             });
         } catch(err){
             console.error(err)
@@ -46,6 +72,26 @@ module.exports = {
         }
         
     },
+
+    reset : async function(req, res){
+        await CountView.destroy({}).fetch();
+        
+        let data = await sails.helpers.sum();
+        try{
+            if(data == 0){
+                return res.ok({
+                    data : 0
+                 });
+            }
+            if(!data){
+                throw new Error('Could not sum object');
+            }
+           
+        } catch(err){
+            console.error(err)
+            return res.status(500) 
+        }
+    }
        
 };
 

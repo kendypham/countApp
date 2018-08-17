@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
     counting : {
-      type: 'number', autoIncrement: true,
+      type: 'number', 
     }
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
