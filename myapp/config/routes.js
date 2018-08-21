@@ -33,7 +33,8 @@ module.exports.routes = {
   'post /count': 'CountViewController.count',
   'post /count/view': 'CountViewController.count',
   '/welcome': { view: 'countview/welcome' },
-  
+  'get /imgData' : 'ImagesController.imgData',
+  'post /uploadFile/uploadFile': 'UploadFileController.uploadFile'
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
